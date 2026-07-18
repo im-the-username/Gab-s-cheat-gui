@@ -311,5 +311,13 @@ createScriptButton("Super ring v5 lukas", 105, page2Folder, function()
     if not success then warn("Failed to run Super ring v5 lukas: " .. tostring(err)) end
 end)
 
+-- Added Shaders Button
+createScriptButton("Shaders(sometimes crashes)", 150, page2Folder, function()
+    local success, err = pcall(function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/randomstring0/pshade-ultimate/refs/heads/main/src/cd.lua'))()
+    end)
+    if not success then warn("Failed to run Shaders: " .. tostring(err)) end
+end)
+
 -- Set default layout view state
 updatePageVisibility()
