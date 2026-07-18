@@ -29,7 +29,7 @@ StarterGui:SetCore("SendNotification", {
     Icon = playerFaceIcon -- Displays the running player's avatar face!
 }) 
 
-task.wait(5)
+task.wait(2)
 
 StarterGui:SetCore("SendNotification", {
     Title = "Thanks for using my script ",
@@ -51,7 +51,7 @@ pcall(function()
 end)
 
 if isFriend then
-    task.wait(5) -- Wait for the previous notification to clear out
+    task.wait(2) -- Wait for the previous notification to clear out
     StarterGui:SetCore("SendNotification", {
         Title = "Hello friend!",
         Text = "How are you doing?",
@@ -59,7 +59,7 @@ if isFriend then
     })
 end
 
-task.wait(3)
+task.wait(2)
 
 local choiceBindable = Instance.new("BindableFunction")
 choiceBindable.OnInvoke = function(buttonText)
