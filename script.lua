@@ -37,15 +37,21 @@ StarterGui:SetCore("SendNotification", {
     Duration = 5
 })
 
--- CHECK FOR FRIENDSHIP STATUS WITH GABRIELTOD112
+-- FOOLPROOF FRIENDSHIP CHECK (Fetches exact ID from username)
 local isFriend = false
 pcall(function()
-    -- 4983050167 is the UserId for "Gabrieltod112". We check against the ID directly for stability.
-    isFriend = localPlayer:IsFriendsWith(4983050167) or localPlayer.Name == "Gabrieltod112"
+    if localPlayer.Name == "Gabrieltod112" then
+        isFriend = true
+    else
+        local creatorId = Players:GetUserIdFromNameAsync("Gabrieltod112")
+        if creatorId then
+            isFriend = localPlayer:IsFriendsWith(creatorId)
+        end
+    end
 end)
 
 if isFriend then
-    task.wait(5) -- Wait for the previous notification to clear
+    task.wait(5) -- Wait for the previous notification to clear out
     StarterGui:SetCore("SendNotification", {
         Title = "Hello friend!",
         Text = "How are you doing?",
