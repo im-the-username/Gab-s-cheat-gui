@@ -37,6 +37,22 @@ StarterGui:SetCore("SendNotification", {
     Duration = 5
 })
 
+-- CHECK FOR FRIENDSHIP STATUS WITH GABRIELTOD112
+local isFriend = false
+pcall(function()
+    -- 4983050167 is the UserId for "Gabrieltod112". We check against the ID directly for stability.
+    isFriend = localPlayer:IsFriendsWith(4983050167) or localPlayer.Name == "Gabrieltod112"
+end)
+
+if isFriend then
+    task.wait(5) -- Wait for the previous notification to clear
+    StarterGui:SetCore("SendNotification", {
+        Title = "Hello friend!",
+        Text = "How are you doing?",
+        Duration = 5
+    })
+end
+
 task.wait(3)
 
 local choiceBindable = Instance.new("BindableFunction")
@@ -280,6 +296,13 @@ createScriptButton("Drop kick(buggy)", 60, page2Folder, function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/gsm231/Fe-DropKick/refs/heads/main/V0.1"))()
     end)
     if not success then warn("Failed to run Drop kick: " .. tostring(err)) end
+end)
+
+createScriptButton("Super ring v5 lukas", 105, page2Folder, function()
+    local success, err = pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lukashub-coder/Super-ring-V5/refs/heads/main/By%20lukas!!"))()
+    end)
+    if not success then warn("Failed to run Super ring v5 lukas: " .. tostring(err)) end
 end)
 
 -- Set default layout view state
