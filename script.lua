@@ -305,60 +305,35 @@ createScriptButton("Super ring v5 lukas", 105, page2Folder, function()
     if not success then warn("Failed to run Super ring v5 lukas: " .. tostring(err)) end
 end)
 
--- CUSTOM SUPERING BY FOXY9694 BUTTON WITH ORANGE EDGES & CUSTOM TOP-RIGHT NOTIFICATION
-local customSuperButton = createScriptButton("custom supering by foxy9694", 150, page2Folder, function()
-    -- Run the loaded GitHub script safely
+-- gab's aimbot Button (Red Border)
+local aimbotBtn = createScriptButton("gab's aimbot", 150, page2Folder, function()
+    local success, err = pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/im-the-username/gab-s-aimbot/refs/heads/main/Aimbot.lua"))()
+    end)
+    if not success then warn("Failed to run gab's aimbot: " .. tostring(err)) end
+end)
+
+local redStroke = Instance.new("UIStroke")
+redStroke.Name = "AimbotBorder"
+redStroke.Color = Color3.fromRGB(255, 30, 30)
+redStroke.Thickness = 2
+redStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+redStroke.Parent = aimbotBtn
+
+-- Added supering by foxy9694 Button (Orange Border)
+local superRingBtn = createScriptButton("supering by foxy9694", 195, page2Folder, function()
     local success, err = pcall(function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/northernline23/Super-ring-parts-V1/refs/heads/main/script.lua"))()
     end)
-    
-    if not success then warn("Failed to run custom supering: " .. tostring(err)) end
-    
-    -- Custom Top-Right Notification Creation
-    local customNotif = Instance.new("Frame")
-    customNotif.Size = UDim2.new(0, 280, 0, 75)
-    customNotif.Position = UDim2.new(1, -290, 0, 20) -- Top right corner
-    customNotif.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    customNotif.BorderSizePixel = 0
-    customNotif.Parent = screenGui
-    
-    local notifCorner = Instance.new("UICorner")
-    notifCorner.CornerRadius = UDim.new(0, 10)
-    notifCorner.Parent = customNotif
-    
-    local notifGradient = Instance.new("UIGradient")
-    notifGradient.Rotation = 45
-    notifGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.0, Color3.fromRGB(200, 30, 30)),
-        ColorSequenceKeypoint.new(1.0, Color3.fromRGB(90, 20, 140))
-    })
-    notifGradient.Parent = customNotif
-    
-    local notifText = Instance.new("TextLabel")
-    notifText.Size = UDim2.new(1, -20, 1, -20)
-    notifText.Position = UDim2.new(0, 10, 0, 10)
-    notifText.BackgroundTransparency = 1
-    notifText.Text = "Special thanks to foxy9694 for making this and giving the script to me"
-    notifText.TextColor3 = Color3.fromRGB(255, 255, 255)
-    notifText.TextSize = 12
-    notifText.TextWrapped = true
-    notifText.Font = Enum.Font.GothamBold
-    notifText.Parent = customNotif
-    
-    -- Disappear and clean up after 3 seconds
-    task.delay(3, function()
-        if customNotif then
-            customNotif:Destroy()
-        end
-    end)
+    if not success then warn("Failed to run supering by foxy9694: " .. tostring(err)) end
 end)
 
--- Give the new button orange edges
 local orangeStroke = Instance.new("UIStroke")
-orangeStroke.Color = Color3.fromRGB(255, 100, 0) -- Neon Orange
+orangeStroke.Name = "SuperRingBorder"
+orangeStroke.Color = Color3.fromRGB(255, 120, 0) -- Pure Orange
 orangeStroke.Thickness = 2
 orangeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-orangeStroke.Parent = customSuperButton
+orangeStroke.Parent = superRingBtn
 
 -- Set default layout view state
 updatePageVisibility()
