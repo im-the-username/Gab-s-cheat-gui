@@ -29,7 +29,7 @@ StarterGui:SetCore("SendNotification", {
     Icon = playerFaceIcon -- Displays the running player's avatar face!
 }) 
 
-task.wait(2)
+task.wait(5)
 
 StarterGui:SetCore("SendNotification", {
     Title = "Thanks for using my script ",
@@ -37,21 +37,15 @@ StarterGui:SetCore("SendNotification", {
     Duration = 5
 })
 
--- FOOLPROOF FRIENDSHIP CHECK (Fetches exact ID from username)
+-- CHECK FOR FRIENDSHIP STATUS WITH GABRIELTOD112
 local isFriend = false
 pcall(function()
-    if localPlayer.Name == "Gabrieltod112" then
-        isFriend = true
-    else
-        local creatorId = Players:GetUserIdFromNameAsync("Gabrieltod112")
-        if creatorId then
-            isFriend = localPlayer:IsFriendsWith(creatorId)
-        end
-    end
+    -- 4983050167 is the UserId for "Gabrieltod112". We check against the ID directly for stability.
+    isFriend = localPlayer:IsFriendsWith(4983050167) or localPlayer.Name == "Gabrieltod112"
 end)
 
 if isFriend then
-    task.wait(2) -- Wait for the previous notification to clear out
+    task.wait(5) -- Wait for the previous notification to clear
     StarterGui:SetCore("SendNotification", {
         Title = "Hello friend!",
         Text = "How are you doing?",
@@ -59,7 +53,7 @@ if isFriend then
     })
 end
 
-task.wait(2)
+task.wait(3)
 
 local choiceBindable = Instance.new("BindableFunction")
 choiceBindable.OnInvoke = function(buttonText)
@@ -311,13 +305,60 @@ createScriptButton("Super ring v5 lukas", 105, page2Folder, function()
     if not success then warn("Failed to run Super ring v5 lukas: " .. tostring(err)) end
 end)
 
--- Added Shaders Button
-createScriptButton("Shaders(sometimes crashes)", 150, page2Folder, function()
+-- CUSTOM SUPERING BY FOXY9694 BUTTON WITH ORANGE EDGES & CUSTOM TOP-RIGHT NOTIFICATION
+local customSuperButton = createScriptButton("custom supering by foxy9694", 150, page2Folder, function()
+    -- Run the loaded GitHub script safely
     local success, err = pcall(function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/randomstring0/pshade-ultimate/refs/heads/main/src/cd.lua'))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/northernline23/Super-ring-parts-V1/refs/heads/main/script.lua"))()
     end)
-    if not success then warn("Failed to run Shaders: " .. tostring(err)) end
+    
+    if not success then warn("Failed to run custom supering: " .. tostring(err)) end
+    
+    -- Custom Top-Right Notification Creation
+    local customNotif = Instance.new("Frame")
+    customNotif.Size = UDim2.new(0, 280, 0, 75)
+    customNotif.Position = UDim2.new(1, -290, 0, 20) -- Top right corner
+    customNotif.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    customNotif.BorderSizePixel = 0
+    customNotif.Parent = screenGui
+    
+    local notifCorner = Instance.new("UICorner")
+    notifCorner.CornerRadius = UDim.new(0, 10)
+    notifCorner.Parent = customNotif
+    
+    local notifGradient = Instance.new("UIGradient")
+    notifGradient.Rotation = 45
+    notifGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0.0, Color3.fromRGB(200, 30, 30)),
+        ColorSequenceKeypoint.new(1.0, Color3.fromRGB(90, 20, 140))
+    })
+    notifGradient.Parent = customNotif
+    
+    local notifText = Instance.new("TextLabel")
+    notifText.Size = UDim2.new(1, -20, 1, -20)
+    notifText.Position = UDim2.new(0, 10, 0, 10)
+    notifText.BackgroundTransparency = 1
+    notifText.Text = "Special thanks to foxy9694 for making this and giving the script to me"
+    notifText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    notifText.TextSize = 12
+    notifText.TextWrapped = true
+    notifText.Font = Enum.Font.GothamBold
+    notifText.Parent = customNotif
+    
+    -- Disappear and clean up after 3 seconds
+    task.delay(3, function()
+        if customNotif then
+            customNotif:Destroy()
+        end
+    end)
 end)
+
+-- Give the new button orange edges
+local orangeStroke = Instance.new("UIStroke")
+orangeStroke.Color = Color3.fromRGB(255, 100, 0) -- Neon Orange
+orangeStroke.Thickness = 2
+orangeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+orangeStroke.Parent = customSuperButton
 
 -- Set default layout view state
 updatePageVisibility()
