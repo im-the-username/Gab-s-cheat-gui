@@ -578,7 +578,7 @@ do
 -- if you are snooping around the code to just find the key fuck you.
 		submit.MouseButton1Click:Connect(function()
 			local entered = keyBox.Text
-			if entered == "hellofavfuzzy's" then
+			if entered == "" then
 				keyGui:Destroy()
 				local success, err = pcall(function()
 					-- Full gabs super ring code is already embedded in previous version
