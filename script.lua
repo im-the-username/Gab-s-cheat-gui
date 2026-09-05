@@ -1,5 +1,5 @@
 --[[
-    Gab's Script Hub - Starlight UI Remake
+    Gab's Script Hub - Starlight UI Remake.
     Original features, notifications, loadstrings and gabs super ring kept intact.
     UI completely rebuilt with Starlight Interface Suite.
 ]]
